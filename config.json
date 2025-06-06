@@ -1,0 +1,13 @@
+{
+  "development": {
+    "port": 3000,
+    "validateDescriptor": true,
+    "errorTemplate": true,
+    "store": {
+      "adapter": "sequelize",
+      "dialect": "sqlite",
+      "storage": "./store.db"
+    }
+  },
+  "product": "jira"
+}

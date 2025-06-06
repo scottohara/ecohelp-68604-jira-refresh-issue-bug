@@ -1,0 +1,138 @@
+{
+  "key": "ecohelp-68604.jira-refresh-issue-bug",
+  "name": "ECOHELP-68604 JIRA Refresh Issue Bug",
+  "description": "Demonstrates a bug with AP.jira.refreshIssuePage()",
+  "baseUrl": "{{localBaseUrl}}",
+  "version": "3.0.0",
+  "lifecycle": {
+    "installed": "/installed"
+  },
+  "links": {
+    "self": "{{localBaseUrl}}/atlassian-connect.json",
+    "homepage": "{{localBaseUrl}}/atlassian-connect.json"
+  },
+  "authentication": {
+    "type": "jwt"
+  },
+  "apiMigrations": {
+    "gdpr": true,
+    "context-qsh": true,
+    "signed-install": true
+  },
+  "scopes": ["READ", "WRITE", "DELETE"],
+  "modules": {
+    "jiraEntityProperties": [
+      {
+        "key": "ecohelp-68604",
+        "name": {
+          "value": "ECOHELP-68604"
+        },
+        "entityType": "issue",
+        "keyConfigurations": [
+          {
+            "extractions": [
+              {
+                "objectName": "value",
+                "type": "text"
+              }
+            ],
+            "propertyKey": "ecohelp-68604"
+          }
+        ]
+      }
+    ],
+    "dialogs": [
+      {
+        "key": "add-dialog",
+        "cacheable": true,
+        "url": "/add",
+        "options": {
+          "chrome": true,
+          "header": {
+            "value": "Add ECOHELP-68604"
+          },
+          "height": "80px",
+          "width": "400px"
+        }
+      },
+      {
+        "key": "delete-dialog",
+        "cacheable": true,
+        "url": "/delete",
+        "options": {
+          "chrome": true,
+          "header": {
+            "value": "Delete ECOHELP-68604"
+          },
+          "height": "80px",
+          "width": "400px"
+        }
+      }
+    ],
+    "webItems": [
+      {
+        "key": "add-action",
+        "location": "operations-attachments",
+        "name": {
+          "value": "Add ECOHELP-68604"
+        },
+        "conditions": [
+          {
+            "condition": "entity_property_equal_to",
+            "params": {
+              "entity": "issue",
+              "propertyKey": "ecohelp-68604",
+              "objectName": "show",
+              "value": "true"
+            },
+            "invert": true
+          }
+        ],
+        "context": "addon",
+        "target": {
+          "type": "dialogmodule",
+          "options": {
+            "key": "add-dialog"
+          }
+        }
+      },
+      {
+        "key": "delete-action",
+        "location": "operations-attachments",
+        "name": {
+          "value": "Delete ECOHELP-68604"
+        },
+        "conditions": [
+          {
+            "condition": "entity_property_equal_to",
+            "params": {
+              "entity": "issue",
+              "propertyKey": "ecohelp-68604",
+              "objectName": "show",
+              "value": "true"
+            }
+          }
+        ],
+        "context": "addon",
+        "target": {
+          "type": "dialogmodule",
+          "options": {
+            "key": "delete-dialog"
+          }
+        }
+      }
+    ],
+    "webPanels": [
+      {
+        "key": "view-ecohelp-68604",
+        "location": "atl.jira.view.issue.left.context",
+        "weight": 200,
+        "name": {
+          "value": "ECOHELP-68604"
+        },
+        "cacheable": true,
+        "url": "/view"
+      }
+    ]
+  }
+}
